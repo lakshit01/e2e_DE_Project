@@ -1,0 +1,6 @@
+customers: 1000
+drivers: 100
+vehicles: 50
+warehouses: 10
+routes: 25
+shipments: 10000
