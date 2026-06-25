@@ -4,11 +4,11 @@ class MySQLLoader:
 
     def __init__(
         self,
-        host="localhost",
+        host="logistics-mysql.cju20w6u0l15.ap-south-1.rds.amazonaws.com",
         port=3306,
         database="logistics",
-        username="root",
-        password="root"
+        username="admin",
+        password="Admin-321"
     ):
 
         self.engine = create_engine(
