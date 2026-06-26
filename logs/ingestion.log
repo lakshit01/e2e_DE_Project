@@ -1,0 +1,26 @@
+2026-06-27 02:54:46,472 | INFO | Starting ingestion
+2026-06-27 02:54:46,513 | INFO | ===================================
+2026-06-27 02:54:46,513 | INFO | Tables Loaded : 0
+2026-06-27 02:54:46,513 | INFO | Rows Loaded   : 0
+2026-06-27 02:54:46,513 | INFO | Execution     : 0.04 sec
+2026-06-27 02:54:46,513 | INFO | ===================================
+2026-06-27 02:56:35,000 | INFO | Starting ingestion
+2026-06-27 02:56:35,028 | INFO | Loading customers
+2026-06-27 02:57:53,046 | INFO | Starting ingestion
+2026-06-27 02:57:53,092 | INFO | Loading customers
+2026-06-27 02:57:55,488 | INFO | customers: 1000 rows loaded
+2026-06-27 02:57:55,488 | INFO | Loading drivers
+2026-06-27 02:57:56,099 | INFO | drivers: 100 rows loaded
+2026-06-27 02:57:56,122 | INFO | Loading routes
+2026-06-27 02:57:56,814 | INFO | routes: 25 rows loaded
+2026-06-27 02:57:56,814 | INFO | Loading shipments
+2026-06-27 02:58:01,403 | INFO | shipments: 10000 rows loaded
+2026-06-27 02:58:01,403 | INFO | Loading vehicles
+2026-06-27 02:58:01,942 | INFO | vehicles: 50 rows loaded
+2026-06-27 02:58:01,942 | INFO | Loading warehouses
+2026-06-27 02:58:02,210 | INFO | warehouses: 10 rows loaded
+2026-06-27 02:58:02,210 | INFO | ===================================
+2026-06-27 02:58:02,210 | INFO | Tables Loaded : 6
+2026-06-27 02:58:02,210 | INFO | Rows Loaded   : 11185
+2026-06-27 02:58:02,210 | INFO | Execution     : 9.16 sec
+2026-06-27 02:58:02,210 | INFO | ===================================

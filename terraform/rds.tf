@@ -1,92 +1,68 @@
 #################################################
-# DATA SOURCES
-#################################################
-
-data "aws_vpc" "default" {
-
-  default = true
-
-}
-
-data "aws_subnets" "default" {
-
-  filter {
-
-    name = "vpc-id"
-
-    values = [
-      data.aws_vpc.default.id
-    ]
-
-  }
-
-}
-
-
-#################################################
-# SECURITY GROUP
-#################################################
-
-resource "aws_security_group" "rds_mysql_sg" {
-
-  name        = "logistics-rds-sg"
-  description = "Allow MySQL"
-
-  ingress {
-
-    from_port = 3306
-    to_port   = 3306
-
-    protocol = "tcp"
-
-    cidr_blocks = [
-      "192.168.1.8/32"
-    ]
-
-  }
-
-  egress {
-
-    from_port = 0
-    to_port   = 0
-
-    protocol = "-1"
-
-    cidr_blocks = [
-      "192.168.1.8/32"
-    ]
-
-  }
-
-}
-
-#################################################
 # RDS SUBNET GROUP
 #################################################
 
-resource "aws_db_subnet_group" "rds_subnet_group" {
+resource "aws_db_subnet_group" "mysql" {
 
-  name = "logistics-subnet-group"
+  name = "${local.name_prefix}-subnet-group"
 
   subnet_ids = data.aws_subnets.default.ids
+
+  tags = {
+
+    Name = "${local.name_prefix}-subnet-group"
+
+  }
 
 }
 
 #################################################
-# RDS MYSQL
+# RDS PARAMETER GROUP
 #################################################
 
-resource "aws_db_instance" "logistics_mysql" {
+resource "aws_db_parameter_group" "mysql" {
 
-  identifier = "logistics-mysql"
+  name = "${local.name_prefix}-mysql-params"
+
+  family = "mysql8.0"
+
+  parameter {
+
+    name = "binlog_format"
+
+    value = "ROW"
+
+  }
+
+  parameter {
+
+    name = "binlog_row_image"
+
+    value = "FULL"
+
+  }
+
+}
+
+#################################################
+# MYSQL RDS
+#################################################
+
+resource "aws_db_instance" "mysql" {
+
+  identifier = "${local.name_prefix}-mysql"
 
   engine = "mysql"
 
-  engine_version = "8.0"
+  engine_version = "8.0.45"
 
   instance_class = "db.t3.micro"
 
   allocated_storage = 20
+
+  max_allocated_storage = 100
+
+  db_name = var.db_name
 
   username = var.db_username
 
@@ -96,12 +72,28 @@ resource "aws_db_instance" "logistics_mysql" {
 
   skip_final_snapshot = true
 
-  db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.name
+  deletion_protection = false
+
+  storage_encrypted = true
+
+  multi_az = false
+
+  backup_retention_period = 1
+
+  db_subnet_group_name = aws_db_subnet_group.mysql.name
+
+  parameter_group_name = aws_db_parameter_group.mysql.name
 
   vpc_security_group_ids = [
 
-    aws_security_group.rds_mysql_sg.id
+    aws_security_group.rds.id
 
   ]
+
+  tags = {
+
+    Name = "${local.name_prefix}-mysql"
+
+  }
 
 }

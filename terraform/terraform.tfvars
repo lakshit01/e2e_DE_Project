@@ -4,7 +4,8 @@ project_name = "logistics"
 
 environment = "dev"
 
-alert_email = "tyagilakshit39@gmail.com"
+db_name = "logistics"
 
 db_username = "admin"
+
 db_password = "Admin-321"
