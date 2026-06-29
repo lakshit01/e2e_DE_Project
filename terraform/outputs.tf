@@ -55,3 +55,35 @@ output "rds_database" {
   value = aws_db_instance.mysql.db_name
 
 }
+
+#################################################
+# DMS
+#################################################
+
+output "dms_replication_instance" {
+
+  value = aws_dms_replication_instance.main.replication_instance_id
+
+}
+
+output "dms_replication_instance_arn" {
+
+  value = aws_dms_replication_instance.main.replication_instance_arn
+
+}
+
+#################################################
+# DMS ENDPOINTS
+#################################################
+
+output "mysql_source_endpoint" {
+
+  value = aws_dms_endpoint.mysql_source.endpoint_arn
+
+}
+
+output "s3_target_endpoint" {
+
+  value = aws_dms_endpoint.s3_target.endpoint_arn
+
+}

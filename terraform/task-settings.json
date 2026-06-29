@@ -1,0 +1,9 @@
+{
+  "Logging": {
+    "EnableLogging": true
+  },
+
+  "FullLoadSettings": {
+    "TargetTablePrepMode": "DO_NOTHING"
+  }
+}
